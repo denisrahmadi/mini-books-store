@@ -1,12 +1,16 @@
 <template>
   <div>
-    <Banner />
-    <ProductDisplay />
-  </div>
+      <Banner />
+      <Carousel />
+      <ProductDisplay />
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
-}
+  layout: "navfoot",
+  name: "IndexPage",
+};
 </script>
+
+<style></style>

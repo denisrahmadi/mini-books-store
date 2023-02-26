@@ -2,8 +2,6 @@
     <div>
         <h1 class="text-center my-5">Our Products</h1>
         <BookList />
-        <BookList />
-        <BookList />
     </div>
 </template>
 <script>

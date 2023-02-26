@@ -1,37 +1,23 @@
 <template>
     <div>
-        <div>
-            <h3 class="ms-5">Fiksi</h3>
-                <div class="container d-flex flex-wrap gap-5 justify-content-center">
-                    <nuxt-link tag="div" to="#" class="card" style="width: 10rem;">
-                        <img src="https://cdn.gramedia.com/uploads/items/591701404_sapiens.jpg" alt="" style="max-width: fit-content;">
-                        <h5 class="card-text">Sapiens</h5>
-                        <p class="card-text">Yuval Noah Harari</p>
-                        <h5 class="card-title text-primary">Rp. 100.000</h5>
-                    </nuxt-link>
-                    <nuxt-link tag="div" to="#" class="card" style="width: 10rem;">
-                        <img src="https://cdn.gramedia.com/uploads/items/591701404_sapiens.jpg" alt="" style="max-width: fit-content;">
-                        <h5 class="card-text">Sapiens</h5>
-                        <p class="card-text">Yuval Noah Harari</p>
-                        <h5 class="card-title text-primary">Rp. 100.000</h5>
-                    </nuxt-link>
-                    <nuxt-link tag="div" to="#" class="card" style="width: 10rem;">
-                        <img src="https://cdn.gramedia.com/uploads/items/591701404_sapiens.jpg" alt="" style="max-width: fit-content;">
-                        <h5 class="card-text">Sapiens</h5>
-                        <p class="card-text">Yuval Noah Harari</p>
-                        <h5 class="card-title text-primary">Rp. 100.000</h5>
-                    </nuxt-link>
-                    <nuxt-link tag="div" to="#" class="card" style="width: 10rem;">
-                        <img src="https://cdn.gramedia.com/uploads/items/591701404_sapiens.jpg" alt="" style="max-width: fit-content;">
-                        <h5 class="card-text">Sapiens</h5>
-                        <p class="card-text">Yuval Noah Harari</p>
-                        <h5 class="card-title text-primary">Rp. 100.000</h5>
-                    </nuxt-link>
-                    <nuxt-link tag="div" to="#" class="card" style="width: 10rem;">
-                        <img src="https://cdn.gramedia.com/uploads/items/591701404_sapiens.jpg" alt="" style="max-width: fit-content;">
-                        <h5 class="card-text">Sapiens</h5>
-                        <p class="card-text">Yuval Noah Harari</p>
-                        <h5 class="card-title text-primary">Rp. 100.000</h5>
+        <div class="py-5 ms-5">
+            <h3 class="ms-5"></h3>
+                <div class="container d-flex flex-wrap gap-5 justify-content-start">
+                    <nuxt-link 
+                        tag="a" 
+                        :to="{name: 'products-detail', params: {detail: book}}" 
+                        class="card text-decoration-none shadow overflow-hidden p-2" style="width: 10rem;" 
+                        v-for="(book, index) in booksData"
+                        :key="index"
+                    >
+                        <img :src="book.image" alt="" height="220">
+                        <h5 class="card-text text-truncate text-dark mt-1">{{ book.title }}</h5>
+                        <p class="card-text text-truncate fs-6 text-secondary">{{ book.author }}</p>
+                        <h5 class="card-title text-primary">Rp. {{ book.price }}</h5>
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Buy Now"><i class="fa-solid fa-cart-shopping"></i></button>
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add To Wishlist"><i class="fa-solid fa-heart"></i></button>
+                        </div>
                     </nuxt-link>
                 </div>
         </div>
@@ -39,7 +25,11 @@
 </template>
 <script>
 export default {
-    
+    computed: {
+        booksData(){
+            return this.$store.getters.getBooksData
+        }
+    }
 }
 </script>
 <style>
