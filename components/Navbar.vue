@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbar-background">
       <div class="container-fluid">
         <nuxt-link class="navbar-brand" to="/">
-          <img src="~/static/assets/gramedlite.png" alt="">
+          <img src="~/static/assets/gramedlite.png" alt="" />
         </nuxt-link>
         <button
           class="navbar-toggler"
@@ -25,10 +25,15 @@
               <nuxt-link class="nav-link" to="#">Checkout</nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" to="#">Wishlist</nuxt-link>
+              <nuxt-link class="nav-link" to="/wishlist">Wishlist</nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" to="#">Profile</nuxt-link>
+            </li>
+            <li class="nav-item">
+              <nuxt-link class="nav-link" to="/add_product"
+                >Add Product</nuxt-link
+              >
             </li>
             <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,35 +52,62 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form> 
            -->
-           <div>
-                  <button 
-                    type="button" 
-                    class="btn btn-success rounded" 
-                    data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop"
-                  >
-                    Sign In
-                  </button>
-                  <!-- <nuxt-link tag="button" to="#">Sign Out</nuxt-link> -->
-                  <nuxt-link tag="button" to="/signup" class="btn btn-outline-light rounded">Sign Up</nuxt-link>
-            </div>
+          <div>
+            <nuxt-link
+              tag="a"
+              to="/signin"
+              class="btn btn-success rounded"
+              v-if="!$store.getters.isAuthenticated"
+            >
+              Signin
+            </nuxt-link>
+            <nuxt-link
+              tag="a"
+              to="/signup"
+              class="btn btn-outline-light rounded"
+              v-if="!$store.getters.isAuthenticated"
+            >
+              Signup
+            </nuxt-link>
+            <nuxt-link
+              tag="a"
+              to="/user"
+              class="text-light text-decoration-none" 
+              v-if="$store.getters.isAuthenticated"
+            >
+              {{ $store.state.userData.username }}
+            </nuxt-link>
+            <a
+              class="btn btn-outline-danger rounded"
+              v-if="$store.getters.isAuthenticated"
+              @click="signout"
+            >
+              Signout
+            </a>
 
+
+          </div>
         </div>
       </div>
     </nav>
-          <!-- Modal signin -->
-          <ModalSignin />
   </div>
 </template>
 <script>
-export default {};
+export default {
+  methods: {
+    signout(){
+      this.$store.commit("setToken", null)
+      this.$router.push("/")
+    }
+  },
+};
 </script>
 <style scoped>
-  .navbar-background{
-    background-color: #40513B;
-  }
-  .hover-menu-item>li:hover {
-    text-decoration: underline aliceblue ;
-    text-underline-offset: 8px; 
-  }
+.navbar-background {
+  background-color: #40513b;
+}
+.hover-menu-item > li:hover {
+  text-decoration: underline aliceblue;
+  text-underline-offset: 8px;
+}
 </style>

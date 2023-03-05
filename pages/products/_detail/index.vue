@@ -2,21 +2,17 @@
   <div>
     <div class="m-5 d-flex gap-5 sm:flex-wrap">
       <div>
-        <img
-          :src="$route.params.detail.image"
-          style="width: 10rem;"
-          :alt="$route.params.detail.title"
-        />
+        <img :src="book.image" style="width: 10rem" :alt="book.title" />
       </div>
       <div>
         <div class="pb-3">
-          <h1 class="text-capitalize">{{ $route.params.detail.title }}</h1>
-          <h5 class="text-danger">Rp.{{ $route.params.detail.price }}</h5>
+          <h1 class="text-capitalize">{{ book.title }}</h1>
+          <h5 class="text-danger">Rp. {{ book.price }}</h5>
         </div>
         <h5>Deskripsi</h5>
-        <p>{{ $route.params.detail.description }}</p>
+        <p class="pb-3">{{ book.description }}</p>
         <h5>{{ sinopsis }}</h5>
-        <p>{{ detailSinopsis }}</p>
+        <p class="pb-3">{{ detailSinopsis }}</p>
         <div>
           <h5>Detail</h5>
           <table class="px-5">
@@ -25,43 +21,43 @@
               <th class="pe-5">Penerbit</th>
             </tr>
             <tr>
-              <td>{{ $route.params.detail.detail.pages }}</td>
-              <td>{{$route.params.detail.detail.publisher}}</td>
+              <td>{{ book.detail.pages }}</td>
+              <td>{{ book.detail.publisher }}</td>
             </tr>
             <tr>
               <th class="pe-5">Tanggal Terbit</th>
               <th class="pe-5">Berat</th>
             </tr>
             <tr>
-              <td>{{$route.params.detail.detail.publish}}</td>
-              <td>{{$route.params.detail.detail.weight}} KG</td>
+              <td>{{ book.detail.publish }}</td>
+              <td>{{ book.detail.weight }} KG</td>
             </tr>
             <tr>
               <th class="pe-5">ISBN</th>
               <th class="pe-5">Lebar</th>
             </tr>
             <tr>
-              <td>{{$route.params.detail.detail.ISBN}}</td>
-              <td>{{$route.params.detail.detail.width}} cm</td>
+              <td>{{ book.detail.ISBN }}</td>
+              <td>{{ book.detail.width }} cm</td>
             </tr>
             <tr>
               <th class="pe-5">Bahasa</th>
               <th class="pe-5">Panjang</th>
             </tr>
             <tr>
-              <td>{{$route.params.detail.detail.language}}</td>
-              <td>{{$route.params.detail.detail.length}}</td>
+              <td>{{ book.detail.language }}</td>
+              <td>{{ book.detail.length }}</td>
             </tr>
             <tr>
               <th class="pe-5">Kategori</th>
               <th class="pe-5">Cover</th>
             </tr>
             <tr>
-              <td>{{$route.params.detail.detail.category}}</td>
-              <td>{{$route.params.detail.detail.cover}}</td>
+              <td>{{ book.detail.category }}</td>
+              <td>{{ book.detail.cover }}</td>
             </tr>
           </table>
-        </div> 
+        </div>
       </div>
     </div>
     <!-- {{ $route.params.detail }} -->
@@ -69,15 +65,19 @@
 </template>
 <script>
 export default {
-    layout: 'plain',
-    computed: {
-        sinopsis(){
-            return this.$route.params.detail.synopsis !== '' ? 'Sinopsis' : ''
-        },
-        detailSinopsis(){
-            return "" ? '-' : this.$route.params.detail.synopsis
-        }
-    }
+  layout: "plain",
+  computed: {
+    sinopsis() {
+      return this.book.synopsis !== "" ? "Sinopsis" : "";
+    },
+    detailSinopsis() {
+      return "" ? "-" : this.book.synopsis;
+    },
+  },
+  asyncData({ store, params }) {
+    const book = store.getters.detailBooksData(params.detail);
+    return { book };
+  },
 };
 </script>
 <style></style>

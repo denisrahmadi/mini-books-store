@@ -1,7 +1,7 @@
 <template>
   <div>
       <Banner />
-      <Carousel />
+      <!-- <Carousel /> -->
       <ProductDisplay />
     </div>
 </template>
@@ -13,4 +13,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+    
+</style>

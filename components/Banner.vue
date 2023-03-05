@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container col-xxl-8 px-4 py-3">
+    <div class="container col-xxl-8 px-4 py-3 mb-5 background">
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-6">
           <img
@@ -22,19 +22,35 @@
             dolorem laudantium, rerum aperiam, iusto pariatur quasi blanditiis.
             Odio, necessitatibus?
           </p>
-          <div class="d-grid gap-2">
-            <button
+          <div class="btn-group">
+            <nuxt-link
+              tag="button"
+              to="/products"
               type="button"
-              class="btn btn-outline-success btn-lg px-4 me-md-2"
+              class="btn btn-success btn-lg px-4"
             >
               Get It Now
-            </button>
+            </nuxt-link>
+            <nuxt-link
+              tag="button"
+              to="/products"
+              type="button"
+              class="btn btn-outline-success btn-lg px-4 "
+            >
+            <i class="fa-sharp fa-solid fa-arrow-right"></i>
+            </nuxt-link>
             <!-- <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button> -->
           </div>
         </div>
       </div>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#EDF1D6" fill-opacity="1" d="M0,128L80,149.3C160,171,320,213,480,208C640,203,800,149,960,133.3C1120,117,1280,139,1360,149.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
-
   </div>
 </template>
+<style scoped>
+  .background{
+    background-color: #f6f8ea;
+  }
+  .marginleft{
+    margin-left: -10px;
+  }
+</style>

@@ -1,156 +1,110 @@
+import axios from "axios";
+
 export const state = () => ({
-  booksData: [
-    {
-      title: "Sebuah Seni untuk Bersikap Bodo Amat",
-      author: "Mark Manson",
-      price: 58000,
-      image: "https://cdn.gramedia.com/uploads/items/sebuah_seni_untuk_bersikap_bodo_amat_hard_cover_font_revisi-1.jpg",
-      detail: {
-        ISBN: 9786020528540,
-        language: "Indonesia",
-        pages: 256,
-        publish: "15 Mar 2022",
-        publisher: "Gramedia Widiasarana Indonesia",
-        weight: 0.2,
-        width: 13,
-        length: 19,
-        category: "Pengembangan Diri",
-        cover: "Soft",
-      },
-      description: `Buku Sebuah Seni untuk Bersikap Bodo Amat mengajarkan tiga seni yang dapat diterapkan pada kehidupan. Seni pertama adalah bersikap masa bodoh (bodo amat, tidak peduli) pada semua halangan dan perjuangan dalam mencapai sesuai yang diinginkan. Seni kedua adalah mencari hal penting yang menjadi prioritas agar seni pertama, masa bodoh (bodo amat, tidak peduli), dapat lebih mudah dilakukan pada hal sepele. Terakhir, seni ketiga, mulai menentukan hal yang lebih penting atau lebih diprioritaskan saat menuju dewasa.`,
-      synopsis: `Mark Manson adalah satu dari sedikit pengarang yang bukunya setia menemani para pembaca di Indonesia dan seluruh dunia. Telah terjual lebih dari 400.000 eksemplar di Indonesia, Anda pasti tidak asing dengan Sebuah Seni untuk Bersikap Bodo Amat dan Segala-galanya Ambyar.Sebuah Seni untuk Bersikap Bodo Amat adalah buku fenomenal yang menjadi panduan pengembangan diri saat ini. Isinya sangat relevan dan konteksual dengan fenomena-fenomena sosial zaman ini, ketika banyak orang mudah terseret arus konsumerisme, gemar mencari validasi semu, dan mudah kesepian di tengah hingar bingar dunia. Sebuah Seni untuk Bersikap Bodo Amat (Subtle Art of Not Giving A F*ck) menuntun ke jalan self-healing tanpa ada sedikit pun kesan menggurui.Edisi handy ini hadir dengan sampul yang ringan dan kemasan yang lebih dinamis, serta enak digenggam. Ini akan memudahkan Anda untuk membawa-bawanya dalam perjalanan. Anda bisa leluasa untuk membacanya di taman, café, stasiun, atau di tempat umum lainnya.`,
-    },
-    {
-		title: "Menguasai Pemrograman Berorientasi Objek",
-		author: "Ade Rahmat Iskandar",
-		price: 125000,
-        image: "https://cdn.gramedia.com/uploads/items/menguasai_pemrograman.jpg",
-        detail: {
-				ISBN: 9786237131236,
-				language: "Indonesia",
-				pages: 462,
-				publish: "7 Feb 2020",
-                publisher: "Informatika",
-				weight: 0.52,
-				width: 16,
-				length: 24,
-				category: "Teknologi",
-				cover: "Soft",
-			  },
-		description: `Pemrograman berorientasi objek atau dalam bahasa Inggris Object Oriented Programming, disingkat (OOP) adalah model pemrograman yang didasarkan pada konsep "objek" yang dapat berisi data, berupa bidang atau bahkan disebut properti dan kode sebagai fungsi/prosedur atau disebut juga dengan metode. Semua data dan fungsionalitas dalam model ini dibungkus dalam kelas atau objek dibandingkan dengan logika pemrograman terstruktur. Setiap objek dapat menerima pesan, memproses data, dan mengirim pesan ke objek lain. Model data berorientasi objek dikatakan memberikan lebih banyak fleksibilitas, kemudahan transformasi program dan banyak digunakan dalam rekayasa perangkat lunak skala besar. Juga, para pendukung OOP berpendapat bahwa OOP lebih mudah dipelajari untuk pemula daripada pendekatan sebelumnya dan pendekatan OOP lebih mudah untuk dikembangkan dan dipelihara. Konsep dari buku Menguasai Pemrograman Berorientasi Objek atau dikenal sebagai Object Oriented Programming (OOP) berisi konsep-konsep ril dari OOP seperti pemahaman object, class dan constructor. Pembahasan Inheritance, Polymorphism, Encapsulation dan Abstraction. Selain itu, konsep dari relasi antar class (asosiasi, agregasi, dan komposisi), Casting Of, Abstract, Interface, Static, Inner dan Class, Collection dan Generic pun dijabarkan dalam buku ini. Yang akan Anda dapatkan dalam buku ini, yaitu: Materi lengkap mengenai menguasai pemrograman berorientasi objek. CD untuk dapat memahami lebih mendalam mengenai pemrograman berorientasi objek.`,
-		synopsis: ``,
-	},
-    {
-		title: "Eiichiro Oda",
-		author: "One Piece",
-		price: 32000,
-        image: "https://cdn.gramedia.com/uploads/picture_meta/2023/2/22/buvn6ihhwzghzjfxy8be3f.jpg",
-        detail: {
-				ISBN: 9786230046254,
-				language: "Indonesia",
-				pages: 192,
-				publish: "21 Feb 2023",
-                publisher: "Elex Media Komputindo",
-				weight: 0.135,
-				width: 11.4,
-				length: 17.2,
-				category: "Anime",
-				cover: "Soft",
-			  },
-		description: `Di antara jenis buku lainnya, komik memang disukai oleh semua kalangan mulai dari anak kecil hingga orang dewasa. Alasan komik lebih disukai oleh banyak orang karena disajikan dengan penuh dengan gambar dan cerita yang mengasyikan sehingga mampu menghilangkan rasa bosan di kala waktu senggang. Komik seringkali dijadikan sebagai koleksi dan diburu oleh penggemarnya karena serinya yang cukup terkenal dan kepopulerannya terus berlanjut sampai saat ini. Dalam memilih jenis komik, ada baiknya perhatikan terlebih dahulu ringkasan cerita komik di sampul bagian belakang sehingga sesuai dengan preferensi pribadi pembaca.`,
-		synopsis: `Luffy dan kawan-kawan terbawa terbang ke Pulau Langit lalu tertangkap oleh tangan iblis Enel! Simak komik berisi lima cerita pendek, termasuk cerita “Kelas Ninja”! Syukurlah kita punya nice buddies!`,
-	},
-    {
-		title: "Buku Saku Rahasia Kebahagiaan",
-		author: "Ibn Qadhib Al-ban, Ibn Qadhib al-Ban",
-		price: 15000,
-        image: "https://cdn.gramedia.com/uploads/items/ID_SIS2015MTH06BSRK_C.jpg",
-        detail: {
-				ISBN: 9786021687048,
-				language: "Indonesia",
-				pages: 194,
-				publish: "2 Jun 2015",
-                publisher: "Serambi Ilmu Semesta",
-				weight: 0,
-				width: 0,
-				length: 0,
-				category: "Rohani",
-				cover: "Soft",
-			  },
-		description: `Segala sesuatu pada mulanya diciptakan kecil lalu membesar, kecuali musibah. Ia diciptakan besar lalu mengecil. Hidup takkan pernah keluar dari perputaran suka dan duka, anugerah dan musibah, sempit dan lapang. Dan semua itu adalah ujian. Hanya orang-orang mukmin sejati yang mampu menyikapi setiap keadaan tersebut secara tepat. Rasulullah mengatakan, jika mendapatkan anugerah, mereka bersyukur, dan anugerah itu menjadi kebaikan bagi mereka; jika ditimpa musibah, mereka bersabar, dan musibah pun menjadi kebaikan bagi mereka. Namun, pada kenyataannya tak selalu demikian. Tak jarang seseorang terlalaikan oleh anugerah dan mengeluh saat mendapat musibah. Kenapa? Bisa jadi, sebab sudut yang kurang tepat dalam memandang dinamika hidup serta lemahnya keyakinan bahwa Allah-lah di balik setiap yang terjadi di dunia ini.`,
-		synopsis: ``,
-	},
-    {
-		title: "Madilog : Materialisme Dialektika & Logika",
-		author: "Tan Malaka",
-		price: 32000,
-        image: "https://cdn.gramedia.com/uploads/items/9789791683319_Madilog-Tan-Malaka-Materialisme-Dialektika--Logika.jpg",
-        detail: {
-				ISBN: 9786025792403,
-				language: "Indonesia",
-				pages: 560,
-                publish: "5 Mar 2014",
-				publisher: "Narasi",
-				weight: 0.5,
-				width: 15,
-				length: 21,
-				category: "Politik & Sosial",
-				cover: "Soft",
-			  },
-		description: `Madilog Tan Malaka : Materialisme Dialektika & Logika membahas tentang pandangan Tan Malaka terhadap Materialisme, Dialektika, dan Logika yang ditulis oleh Tan Malaka, filsuf asal Indonesia dan juga pejuang kemerdekaan. Teori materialisme ini diambil dari pemikiran filsuf asal Jerman, Karl Marx dan Friedrich Engels. Materialisme dijelaskan sebagai paham filsafat yang menjelaskan bahwa sesuatu yang bisa dikatakan ada kebenarannya adalah materi. Tan malaka juga menjelaskan dan memperkenalkan prinsip dasar logika dalam buku ini. Sedangkan teori dialektika berarti tidak ada suatu kebenaran yang bersifat absolut. Tan malaka menerangkan bahwa seiring waktu berjalan, akan selalu ada pergerakan yang berdampak pada kehidupan. Buku ini direkomendasikan untuk pembaca yang menyukai filsafat.`,
-		synopsis: `Tan Malaka melihat kemajuan umat manusia harus melalui tiga tahap: Dari "logika mistika" lewat "filsafat" ke "ilmu pengetahuan" (sains). Dan selama bangsa Indonesia masih terkungkung oleh "logika mistika" itu, tak mungkin ia menjadi bangsa yang merdeka dan maju. Madilog merupakan jalan keluar dari "logika mistika" dan imbauan seorang nasionalis sejati buat bangsanya untuk keluar dari keterbelakangan dan ketertinggalan.`,
-	},
-    {
-		title: "Steve Jobs: The Geek Mastermind",
-		author: "Ibrahim Nubika",
-		price: 42500,
-        image: "https://cdn.gramedia.com/uploads/items/Steve_Jobs__The_Geek_Mastermind.jpg",
-        detail: {
-				ISBN: 9786232446366,
-				language: "Indonesia",
-				pages: 244,
-				publish: "27 Okt 2021",
-                publisher: "Anak Indonesia Hebat",
-				weight: 0.205,
-				width: 13.5,
-				length: 19.5,
-				category: "Biography",
-				cover: "Soft",
-			  },
-		description: `Salah satu tokoh teknologi dunia paling penting di awal abad 21 adalah Steve Jobs, pendiri sekaligus CEO Apple. Jobs merupakan pionir dari berbagai produk berteknologi tinggi berbasis komputasi. Bersama Apple, Steve Jobs telah membuat banyak lompatan besar di bidang teknologi yang banyak mengubah wajah dunia. Selain sebagai inovator teknologi untuk Apple, Jobs juga merupakan jenderal yang memimpin pertarungan bisnis perusahaan secara global. Kemampuan bisnis dan manajerial Jobs bersama Apple dan berbagai perusahaan yang pernah dipimpinnya tidak perlu diragukan lagi. Steve Jobs juga merupakan salah seorang pebisnis yang memiliki kemampuan negosiasi mengagumkan. Sebagai negosiator, ia sering menjadi penentu utama keberhasilan perusahaan mencapai kesepakatan kerja sama dengan pihak lain. Keunggulan dari buku ini, yaitu:
-        Ini adalah buku biografi bisnis tentang seorang revolusioner dalam industri digital. Bahwa untuk mencapai hal-hal besar hanya diperlukan satu ide sederhana.
-        Melalui buku ini pembaca jadi tahu bahwa Steve Jobs memadukan unsur estetika, spiritual, dan inovasi dalam membangun bisnisnya. Namun, ketiganya tak akan mencapai hal besar tanpa strategi negosiasi.
-        Dalam buku inilah pembaca akan tahu negosiasi seperti apakah yang diajarkan Steve Jobs untuk menjadi sukses.`,
-		synopsis: ``,
-	},
-    // {
-	// 	title: "",
-	// 	author: "",
-	// 	price: 32000,
-    //     image: "",
-    //     detail: {
-	// 			ISBN: null,
-	// 			language: "",
-	// 			pages: null,
-	// 			publisher: "",
-	// 			weight: null,
-	// 			width: null,
-	// 			length: null,
-	// 			category: "",
-	// 			cover: "",
-	// 		  },
-	// 	description: ``,
-	// 	synopsis: ``,
-	// },
-  ],
+  booksData: [],
+  wishlistBooksData: [],
+  token: null,
+  userData: null
 });
 
+
+
+
 export const getters = {
-    getBooksData(state){
-        return state.booksData
-    }
+  getBooksData(state) {
+    return state.booksData;
+  },
+
+  getWishlistBooksData(state) {
+    return state.wishlistBooksData;
+  },
+
+  detailBooksData: (state) => (id) => {
+    return state.booksData.find((book) => book.id === id);
+  },
+
+  isAuthenticated(state) {
+    return state.token !== null
+  },
+
+  userId(state){
+    return state.userData.userId
+  }
 };
 
-export const mutations = {};
 
-export const actions = {};
+
+export const mutations = {
+  addNewBooksData(state, payload) {
+    return state.booksData.push(payload);
+  },
+
+  addWishlistBooksData(state, payload) {
+    return state.wishlistBooksData.push(payload);
+  },
+
+  setBooksData(state, payload) {
+    state.booksData = payload;
+  },
+
+  setToken(state, payload) {
+    state.token = payload;
+  },
+
+  setUserData(state, payload){
+    state.userData = payload
+  }
+};
+
+
+
+
+export const actions = {
+  nuxtServerInit({ commit }) {
+    return axios
+      .get(
+        "https://recall-nuxtjs-theory-default-rtdb.asia-southeast1.firebasedatabase.app/booksData.json"
+      )
+      .then((response) => {
+        const booksDataArray = [];
+        for (const key in response.data) {
+          booksDataArray.push({ ...response.data[key], id: key });
+        }
+        commit("setBooksData", booksDataArray);
+      })
+      .catch((e) => context.error(e));
+  },
+  addNewBooksData({ commit, state }, books) {
+    return axios
+      .post(
+        `https://recall-nuxtjs-theory-default-rtdb.asia-southeast1.firebasedatabase.app/booksData.json?auth=${state.token}`,
+        { ...books, userId: state.userData.userId }
+      )
+      .then((response) => {
+        commit("addNewBooksData", { ...books, userId: state.userData.userId });
+      });
+  },
+  authenticateUser({commit}, authData){
+  	let WebAPIKey = "AIzaSyBV4Aw9RePLtyl3AIj43sPs6etE6ktnivU"
+    let authUrl = authData.isLogin
+                  ? "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="
+                  : "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="
+
+    return axios
+                .post(authUrl + WebAPIKey, {
+                    email: authData.email,
+                    password: authData.password,
+                    returnSecureToken: true,
+                    displayName: authData.displayName
+                })
+                .then(response => {
+                        commit("setToken", response.data.idToken)
+                        commit("setUserData", {
+                          username: response.data.displayName,
+                          userId: response.data.localId,
+                          email: response.data.email
+                        })
+                      })
+                .catch(error => console.log(error))
+  }
+};

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <footer class="container py-5 " style="max-width: 100%; background-color: #EDF1D6;">
+    <footer class="container py-5" style="max-width: 100%; background-color: #EDF1D6;">
         <div class="row lg:flex justify-content ">
             <div class="col col-md d-block text-center">
                 <img src="~static/assets/crop-logo-black.png" alt="" class="w-75 ms-2">
