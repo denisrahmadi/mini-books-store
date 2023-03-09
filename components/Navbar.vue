@@ -1,9 +1,12 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-background">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark border shadow border-bottom"
+    >
       <div class="container-fluid">
-        <nuxt-link class="navbar-brand" to="/">
-          <img src="~/static/assets/gramedlite.png" alt="" />
+        <nuxt-link class="navbar-brand d-flex" to="/">
+          <img src="~/static/assets/gramedlite.svg" alt="" width="50px" />
+          <h1 class="brand text-dark fw-bold">GRAMEDLITE</h1>
         </nuxt-link>
         <button
           class="navbar-toggler"
@@ -14,78 +17,100 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon text-dark"
+            ><i class="fa-solid fa-bars"></i
+          ></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 m-auto hover-menu-item">
-            <li class="nav-item">
-              <nuxt-link class="nav-link" to="/products">Products</nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link class="nav-link" to="#">Checkout</nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link class="nav-link" to="/wishlist">Wishlist</nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link class="nav-link" to="#">Profile</nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link class="nav-link" to="/add_product"
-                >Add Product</nuxt-link
-              >
-            </li>
-            <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                    </li> -->
-          </ul>
-          <!-- <form class="d-flex">
+        <div class="container">
+          <div
+            class="d-flex justify-content-end collapse navbar-collapse test"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav mb-2 mb-lg-0 hover-menu-item bg-white">
+              <!-- <li>
+                <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form> 
-           -->
-          <div>
-            <nuxt-link
-              tag="a"
-              to="/signin"
-              class="btn btn-success rounded"
-              v-if="!$store.getters.isAuthenticated"
-            >
-              Signin
-            </nuxt-link>
-            <nuxt-link
-              tag="a"
-              to="/signup"
-              class="btn btn-outline-light rounded"
-              v-if="!$store.getters.isAuthenticated"
-            >
-              Signup
-            </nuxt-link>
-            <nuxt-link
-              tag="a"
-              to="/user"
-              class="text-light text-decoration-none" 
-              v-if="$store.getters.isAuthenticated"
-            >
-              {{ $store.state.userData.username }}
-            </nuxt-link>
-            <a
-              class="btn btn-outline-danger rounded"
-              v-if="$store.getters.isAuthenticated"
-              @click="signout"
-            >
-              Signout
-            </a>
-
-
+            </li> -->
+              <li class="nav-item">
+                <nuxt-link class="nav-link text-dark" tag="a" to="/products"
+                  >Products</nuxt-link
+                >
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link text-dark"
+                  tag="a"
+                  v-if="$store.getters.isAuthenticated"
+                  to="/checkout"
+                  >Checkout</nuxt-link
+                >
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link text-dark"
+                  tag="a"
+                  v-if="$store.getters.isAuthenticated"
+                  to="/wishlist"
+                  >Wishlist</nuxt-link
+                >
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link text-dark"
+                  tag="a"
+                  v-if="$store.getters.isAuthenticated"
+                  to="#"
+                >
+                  Profile
+                </nuxt-link>
+              </li>
+              <li class="nav-item dropdown" v-if="$store.getters.isAuthenticated">
+                  <a class="fw-bold text-decoration-none text-dark nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                      <nuxt-link
+                        tag="a"
+                        to="/add_product"
+                        class="nav-link text-dark dropdown-item"
+                        v-if="$store.getters.isAuthenticated"
+                      >
+                        Add Product
+                      </nuxt-link>
+                    </li>
+                    <li>
+                      <nuxt-link
+                        tag="a" 
+                        to="/user"
+                        class="nav-link dropdown-item text-dark dropdown-item" 
+                        v-if="$store.getters.isAuthenticated"
+                      >
+                        {{ $store.state.userData.username }}
+                      </nuxt-link>
+                    </li>
+                  </ul>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  tag="a"
+                  to="/signin"
+                  class="btn btn-success fw-bold px-3"
+                  v-if="!$store.getters.isAuthenticated"
+                >
+                  Login
+                </nuxt-link>
+                <a
+                  class="btn btn-danger rounded fw-bold px-3"
+                  v-if="$store.getters.isAuthenticated"
+                  @click="signout"
+                >
+                  Logout
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -95,19 +120,30 @@
 <script>
 export default {
   methods: {
-    signout(){
-      this.$store.commit("setToken", null)
-      this.$router.push("/")
-    }
+    signout() {
+      this.$store.dispatch("signout");
+      this.$router.push("/");
+    },
   },
 };
 </script>
 <style scoped>
+.test {
+  margin-left: 400px;
+}
+/* .navbar-nav{
+  position: absolute;
+  z-index: 2;
+  right: 10px
+} */
 .navbar-background {
-  background-color: #40513b;
+  background-color: #f7fff3;
 }
 .hover-menu-item > li:hover {
-  text-decoration: underline aliceblue;
+  text-decoration: underline rgb(0, 0, 0);
   text-underline-offset: 8px;
+}
+.nav-link {
+  font-weight: 600;
 }
 </style>

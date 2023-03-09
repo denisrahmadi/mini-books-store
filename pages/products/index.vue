@@ -1,14 +1,23 @@
 <template>
   <div>
-    <h1 class="text-center py-5">Our Products</h1>
+    <div class="d-flex justify-content-center pt-5 fw-bold fs-1">
+      <p class="bg-white rounded px-5">Our Products</p>
+    </div>
     <BookList 
-      :booksData="booksData" 
+      :booksData="booksData"
+      :isUser="isUser"
     />
   </div>
 </template>
 <script>
 import BookList from "./../../components/Books/BookList.vue";
 export default {
+  layout: 'navfoot',
+  data() {
+    return {
+      isUser: false
+    }
+  },
   components: { BookList },
   computed: {
         booksData() {
