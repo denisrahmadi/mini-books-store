@@ -1,0 +1,126 @@
+<template>
+    <div>
+      <div class="pb-5 pt-3">
+        <h1 class="text-center text-dark fw-bold pt-5 pb-4 "><span class="px-5 bg-white">Add New Product</span></h1>
+        <form class="row g-3 needs-validation d-relative mx-auto w-50 d-flex" novalidate>
+          <section>
+            <div class="form-floating">
+            <input
+              v-model="newProductItem.title"
+              type="text"
+              class="form-control shadow-lg"
+              id="floatingInput"
+              placeholder="The Subtle Art Of Giving A F*ck"
+            />
+            <label for="floatingInput" class="form-label">Judul</label>
+          </div>
+          <div class="form-floating">
+            <input
+              v-model="newProductItem.author"
+              type="text"
+              class="form-control shadow-lg"
+              id="floatingInput"
+              placeholder="Mark Manson"
+            />
+            <label for="floatingInput" class="form-label">Penulis</label>
+          </div>
+          <div class="form-floating">
+            <input
+              v-model="newProductItem.price"
+              type="number"
+              class="form-control shadow-lg"
+              id="floatingInput"
+              placeholder="58000"
+            />
+            <label for="floatingInput" class="form-label">Harga</label>
+          </div>
+          <div class="form-floating">
+            <input
+              v-model="newProductItem.image"
+              type="text"
+              class="form-control shadow-lg"
+              id="floatingInput"
+              placeholder="https://cdn.gramedia.com/uploads/items/subtleart.jpg"
+            />
+            <label for="floatingInput" class="form-label">Image Link</label>
+          </div>
+          <div class="form-floating">
+            <textarea
+              v-model="newProductItem.description"
+              class="form-control shadow-lg"
+              placeholder="Buku Sebuah Seni untuk Bersikap Bodo Amat mengajarkan ..."
+              id="floatingTextarea"
+            ></textarea>
+            <label for="floatingInput" class="form-label">Deskripsi</label>
+          </div>
+          <div class="form-floating">
+            <textarea
+              v-model="newProductItem.synopsis"
+              class="form-control shadow-lg"
+              placeholder="Mark Manson adalah satu dari sedikit pengarang ..."
+              id="floatingTextarea"
+            ></textarea>
+            <label for="floatingInput" class="form-label">Sinopsis</label>
+          </div>
+          </section>
+          <button 
+            class="btn btn-success fw-bold" 
+            @click.prevent="addNewBooksData"
+          >
+            {{ books ? "UPDATE" : "SUBMIT" }}
+          </button>
+        </form>
+        <!-- {{ newProductItem }} -->
+      </div>
+    </div>
+  </template>
+  <script>
+  export default {
+    middleware: ["check-auth", "auth"],
+    layout: "plain",
+    props: {
+        books: {
+            type: Object,
+            required: false
+        }
+    },
+    data() {
+      return {
+        newProductItem: this.books 
+        ?   { ...this.books }   
+        :   {
+                title: "",
+                author: "",
+                price: null,
+                image: "",
+                description: ``,
+                synopsis: ``,
+            },
+      };
+    },
+    methods: {
+        addNewBooksData(){
+                if (!this.books) {
+                    this.$store.dispatch("addNewBooksData", this.newProductItem)
+                    this.$router.push('/products')
+                } else {
+                    let { id: _, ...newProductItem} = this.newProductItem
+                    this.$store.dispatch(
+                        "updateBooksData", { newProductItem, id: this.newProductItem.id })
+                                .then(() => {
+                                    this.$router.push("/user")
+                                })
+                }       
+        }
+    },
+  };
+  </script>
+  <style scoped>
+          .background{
+          background-repeat: repeat;
+          background-size: cover;
+          background-attachment: fixed;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='730' preserveAspectRatio='none' viewBox='0 0 1440 730'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1073%26quot%3b)' fill='none'%3e%3crect width='1440' height='730' x='0' y='0' fill='rgba(237%2c 241%2c 214%2c 0.5)'%3e%3c/rect%3e%3cpath d='M316.09 0C345.13 5.81 343.47 36.6 366 36.6C383.06 36.6 373.9 4.28 395.28 0C465.4 -14.02 472.14 0 549 0C640.5 0 640.5 0 732 0C823.5 0 823.5 0 915 0C1006.5 0 1006.5 0 1098 0C1107.15 0 1107.28 -1.48 1116.3 0C1198.78 13.5 1205.03 29.95 1281 29.95C1297.3 29.95 1284.33 2.7 1300.84 0C1375.83 -12.27 1425.55 -43.13 1464 0C1507.13 48.37 1464 91.5 1464 183C1464 274.5 1464 274.5 1464 366C1464 457.5 1464 457.5 1464 549C1464 640.5 1508.99 685.49 1464 732C1420.49 776.99 1308.37 774.73 1287 732C1262.62 683.23 1374.56 613.69 1372.5 549C1371.56 519.65 1325.37 543.92 1281 543.92C1278.17 543.92 1278.18 546.09 1278.1 549C1275.74 640.13 1321.75 685.63 1276.12 732C1231.7 777.13 1187.06 732 1098 732C1006.5 732 1006.5 732 915 732C844.44 732 837.16 748.25 773.89 732C745.66 724.75 754.84 685.01 732 685.01C704.92 685.01 708.24 723.22 674.05 732C616.74 746.72 611.53 732 549 732C457.5 732 457.5 732 366 732C274.5 732 274.5 732 183 732C133.86 732 108.17 763.54 84.72 732C40.13 672.04 76.31 636.01 46.92 549C33.95 510.62 9.78 519.38 0 481.22C-13.68 427.88 0 423.61 0 366C0 274.5 0 274.5 0 183C0 91.5 -45.75 45.75 0 0C45.75 -45.75 91.5 0 183 0C249.54 0 253.63 -12.49 316.09 0' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M732 105.95C673.08 105.95 639.3 126.61 614.88 183C582.99 256.63 584 298.26 619.38 366C642.56 410.38 673.5 400.16 732 407.24C821.31 418.06 829.3 417.95 915 401.8C938.7 397.33 950.8 387.82 950.8 366C950.8 321.48 938.94 314.38 915 269.12C890.54 222.88 892.65 217.46 854 183C801.15 135.88 792.64 105.95 732 105.95' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M549 416.83C480.61 416.83 379.07 494.25 379.07 549C379.07 595.84 472.8 620.01 549 620.01C587.13 620.01 607.74 588.54 607.74 549C607.74 486.95 594.95 416.83 549 416.83' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M183 22.47C93.67 62 61.92 101.45 0 93.85C-29.58 90.22 -31.02 15.91 0 0C60.48 -31.02 91.5 0 183 0C197.56 0 212.11 -4.96 212.11 0C212.11 6.27 199.72 15.07 183 22.47' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M308.34 183C326.92 142.36 337.46 148.16 366 112.85C411.43 56.66 400.54 34.37 456.28 0C492.04 -22.05 502.64 0 549 0C633.81 0 718.61 -28.55 718.61 0C718.61 35.84 634.27 65.01 549 128.78C511.92 156.51 481.81 143.44 473.92 183C458.15 262.05 528.98 289.52 501.67 366C475.02 440.63 434.2 426.03 366 485.23C328.78 517.53 290.84 515.24 290.84 549C290.84 586.09 319.61 601.91 366 626.94C448.69 671.56 462.47 649.08 549 688.3C578.37 701.61 597.8 719.48 597.8 732C597.8 741.33 573.4 732 549 732C457.5 732 457.5 732 366 732C274.5 732 274.5 732 183 732C176.22 732 171.97 737.98 169.44 732C133.26 646.48 101.52 634.99 105.58 549C108.3 491.43 142.78 495.74 183 444.88C215.13 404.24 228.3 411.91 250.28 366C290.97 280.97 269.06 268.93 308.34 183' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1174.25 183C1220.09 140.03 1236.97 157.47 1281 113.13C1327.83 65.97 1305.02 31.49 1355.96 0C1396.52 -25.07 1438.72 -28.74 1464 0C1492.74 32.68 1489.24 75.51 1464 122.84C1440.44 167.01 1366.4 140.16 1366.4 183C1366.4 258.08 1416.91 270.4 1464 358.68C1465.71 361.9 1464 362.34 1464 366C1464 369.66 1467.43 372.37 1464 373.32C1375.93 397.78 1352.44 368.28 1281 416.83C1223.18 456.12 1220.43 477.5 1205.48 549C1187.49 635.08 1247.91 676.18 1215.12 732C1194.17 767.68 1156.56 732 1098 732C1006.5 732 1006.5 732 915 732C872.01 732 862.96 752.19 829.01 732C771.46 697.78 780.77 677.35 732 623.19C698.38 585.85 664.22 586.44 664.22 549C664.22 510.69 687.26 480.2 732 471.68C812.65 456.33 836.68 527.27 915 501.26C995.81 474.43 988.97 438.53 1050.26 366C1080.47 330.24 1071.59 323.65 1098 284.67C1133.59 232.15 1128.59 225.8 1174.25 183' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M0 307.18C13.67 307.18 48.44 340.5 48.44 366C48.44 385.16 15.8 396.5 0 396.5C-8.42 396.5 0 381.25 0 366C0 336.59 -10.55 307.18 0 307.18' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1362 732C1362 700.24 1434.43 624.72 1464 624.72C1485.43 624.72 1490.14 704.5 1464 732C1439.14 758.14 1362 753.88 1362 732' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M549 44.06C529.84 44.06 517.28 13.91 517.28 0C517.28 -8.12 533.14 0 549 0C578.01 0 607.02 -9.77 607.02 0C607.02 12.26 574.71 44.06 549 44.06' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1464 60.16C1448.89 60.16 1411.08 18.12 1411.08 0C1411.08 -11.96 1451.62 -14.08 1464 0C1478.08 16 1475.35 60.16 1464 60.16' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M317.56 366C317.56 289.63 339.89 201.3 366 201.3C392.5 201.3 422.79 291.17 422.79 366C422.79 398.47 393.4 415.91 366 415.91C340.79 415.91 317.56 396.94 317.56 366' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M164.23 549C164.23 535.04 172.58 523.76 183 523.76C195.04 523.76 209.14 534.24 209.14 549C209.14 572.1 194.53 599.48 183 599.48C172.08 599.48 164.23 572.9 164.23 549' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M720.7 549C720.7 542.61 724.35 536.11 732 536.11C755.41 536.11 782.83 542.68 782.83 549C782.83 555.3 755.53 561.36 732 561.36C724.47 561.36 720.7 555.24 720.7 549' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1010.16 549C1054.93 505.96 1063.16 461.16 1098 461.16C1124.51 461.16 1123.35 503.09 1132.86 549C1151.41 638.51 1167.48 661.86 1154.12 732C1150.05 753.36 1126.06 732 1098 732C1006.5 732 1006.5 732 915 732C899.57 732 884.13 743.21 884.13 732C884.13 695.76 887.6 676.9 915 637.11C950.61 585.4 963.43 593.93 1010.16 549' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M325.33 732C325.33 726.63 344.68 711.67 366 711.67C401.62 711.67 439.2 726.82 439.2 732C439.2 736.99 402.6 732 366 732C345.66 732 325.33 736.8 325.33 732' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1437 732C1437 723.59 1456.17 703.6 1464 703.6C1469.67 703.6 1470.92 724.72 1464 732C1457.42 738.92 1437 737.79 1437 732' stroke='rgba(64%2c 81%2c 59%2c 0.5)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1073'%3e%3crect width='1440' height='730' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+      }
+  </style>
+  
