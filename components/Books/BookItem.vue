@@ -52,7 +52,7 @@
               <i class="fa-solid fa-heart"></i>
             </button>
             <button
-              v-show="$store.getters.isAuthenticated"
+              v-show="isUser"
               class="btn btn-outline-info"
               @click="editBook(book.id)"
             >
@@ -90,8 +90,23 @@ export default {
       });
     },
     deleteBook(param) {
-      this.$store.dispatch("deleteBooksData", param);
-    },
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this book data!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          this.$store.dispatch("deleteBooksData", param)
+          swal("Nice! Your book data has been deleted", {
+            icon: "success",
+          });
+        } 
+      });
+          // this.$store.dispatch("deleteBooksData", param);
+        },
     editBook(param) {
       this.$router.push(`/products/${param}/edit`);
     },
@@ -126,4 +141,11 @@ h5:hover {
 .tombol__delete:hover {
   background-color: grey;
 }
+
+.card {
+    transition: all 0.5s;
+  }
+  .card:hover {
+    transform: scale(1.1);
+  }
 </style>
