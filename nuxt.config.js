@@ -24,6 +24,7 @@ export default {
     script: [
       { src: '/js/bootstrap.min.js', type: 'text/javascript'},
       { src: 'https://unpkg.com/sweetalert/dist/sweetalert.min.js', type: 'text/javascript'},
+      { src:'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js' }
 
     ]
   },

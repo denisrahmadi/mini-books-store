@@ -2,7 +2,7 @@
     <div>
         <Navbar />
         <div class="background">
-            <nuxt/>
+            <nuxt keep-alive />
         </div>
         <Footer />
     </div>

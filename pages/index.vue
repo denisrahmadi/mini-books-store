@@ -5,6 +5,7 @@
     <ProductDisplay />
     <CallCenter />
 
+    <Testimoni />
   </div>
 </template>
 
@@ -17,4 +18,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
