@@ -9,7 +9,7 @@
     "generate": "nuxt generate"
   },
   "engines": {
-    "node": "16.13.1"
+    "node": "16.19.0"
   },
   "dependencies": {
     "axios": "^0.21.1",
