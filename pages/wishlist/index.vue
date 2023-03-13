@@ -1,7 +1,7 @@
 <template>
   <keep-alive>
     <div>
-      <div class="text-center pt-3 pb-3">
+      <div class="text-center mt-5 pt-3 pb-3">
         <h1>
           <span class="bg-white rounded p-5 fw-bold">Your Wishlist</span>
         </h1>
@@ -16,7 +16,6 @@
           style="width: 500px"
           loop
           autoplay
-          lazy
         ></lottie-player>
       </div>
       <div v-if="!$store.getters.iswishlistBooksData">

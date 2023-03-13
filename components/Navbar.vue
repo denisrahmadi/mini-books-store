@@ -1,108 +1,109 @@
 <template>
-  <keep-alive>
-
-    <div class="container ">
-      <header
-        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between border-bottom pt-3"
-      >
-        <nuxt-link class="navbar-brand d-flex" to="/">
-          <img src="~/static/assets/gramedlite.svg" alt="" width="50px" />
-          <h1 class="brand text-dark fw-bold text-uppercase">Gramedlite</h1>
-        </nuxt-link>
-
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 ms-lg-5">
-          <li>
-            <nuxt-link class="nav-link text-dark" tag="a" to="/products">
-              Products
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              class="nav-link text-dark"
-              tag="a"
-              to="/checkout"
-            >
-              Checkout
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              class="nav-link text-dark"
-              tag="a"
-              to="/wishlist"
-            >
-              Wishlist
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              class="nav-link text-dark"
-              tag="a"
-              v-if="$store.getters.isAuthenticated"
-              to="/profile"
-            >
-              Profile
-           </nuxt-link>
-          </li>
-          <li                  
-            class="nav-item dropdown"
-            v-if="$store.getters.isAuthenticated"
-          >
-            <a
-              class="fw-bold text-decoration-none text-dark nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              id="dropdownMenuLink"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Admin
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li>
-                <nuxt-link
-                  tag="a"
-                  to="/add_product"
-                  class="nav-link text-dark dropdown-item"
-                  v-if="$store.getters.isAuthenticated"
-                >
-                  Add Product
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link
-                  tag="a"
-                  to="/user"
-                  class="nav-link dropdown-item text-dark dropdown-item"
-                  v-if="$store.getters.isAuthenticated"
-                >
-                  {{ $store.state.userData.username }}
-                </nuxt-link>
-              </li>
-            </ul>
-          </li>
-        </ul>
-
-        <div class="col-md-3 text-end">
-          <nuxt-link
-            tag="a"
-            to="/signin"
-            class="btn__login"
-            v-if="!$store.getters.isAuthenticated"
-          >
-            Login
+  <div>
+    <keep-alive>
+      <div class="container ">
+        <header
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between border-bottom pt-3"
+        >
+          <nuxt-link class="navbar-brand d-flex" to="/">
+            <img src="~/static/assets/gramedlite.svg" alt="" width="50px" />
+            <h1 class="brand text-dark fw-bold text-uppercase">Gramedlite</h1>
           </nuxt-link>
-          <a
-            class="btn__logout"
-            v-if="$store.getters.isAuthenticated"
-            @click="signout"
-          >
-            Logout
-          </a>
-        </div>
-      </header>
-    </div>
-  </keep-alive>
+  
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 ms-lg-5">
+            <li>
+              <nuxt-link class="nav-link text-dark" tag="a" to="/products">
+                Products
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                class="nav-link text-dark"
+                tag="a"
+                to="/checkout"
+              >
+                Checkout
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                class="nav-link text-dark"
+                tag="a"
+                to="/wishlist"
+              >
+                Wishlist
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                class="nav-link text-dark"
+                tag="a"
+                v-if="$store.getters.isAuthenticated"
+                to="/profile"
+              >
+                Profile
+             </nuxt-link>
+            </li>
+            <li                  
+              class="nav-item dropdown"
+              v-if="$store.getters.isAuthenticated"
+            >
+              <a
+                class="fw-bold text-decoration-none text-dark nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Admin
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li>
+                  <nuxt-link
+                    tag="a"
+                    to="/add_product"
+                    class="nav-link text-dark dropdown-item"
+                    v-if="$store.getters.isAuthenticated"
+                  >
+                    Add Product
+                  </nuxt-link>
+                </li>
+                <li>
+                  <nuxt-link
+                    tag="a"
+                    to="/user"
+                    class="nav-link dropdown-item text-dark dropdown-item"
+                    v-if="$store.getters.isAuthenticated"
+                  >
+                    {{ $store.state.userData.username }}
+                  </nuxt-link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+  
+          <div class="col-md-3 text-end">
+            <nuxt-link
+              tag="a"
+              to="/signin"
+              class="btn__login"
+              v-if="!$store.getters.isAuthenticated"
+            >
+              Login
+            </nuxt-link>
+            <a
+              class="btn__logout"
+              v-if="$store.getters.isAuthenticated"
+              @click="signout"
+            >
+              Logout
+            </a>
+          </div>
+        </header>
+      </div>
+    </keep-alive>
+  </div>
 </template>
 <script>
 export default {
