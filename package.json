@@ -8,9 +8,6 @@
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
-  "engines": {
-    "node": "^16"
-  },
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^5.2.3",
